@@ -22,7 +22,8 @@ from recap import URI
 
 if __name__ == "__main__":
     argparse.ArgumentParser(
-        description="Create the fens.txt file by selecting 2%% of the positions from games.pgn.").parse_args()
+        description="Create the fens.txt file by selecting 2%% of the positions from games.pgn."
+    ).parse_args()
     dataset_path = URI("data://games.pgn")
     fens_path = URI("data://fens.txt")
 

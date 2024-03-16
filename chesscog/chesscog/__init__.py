@@ -15,7 +15,8 @@ def _setup_logger(level: int = logging.INFO):
     handler = logging.StreamHandler(sys.stderr)
     handler.setLevel(level)
     formatter = logging.Formatter(
-        "[%(asctime)s] {%(filename)s:%(lineno)d} %(levelname)s - %(message)s")
+        "[%(asctime)s] {%(filename)s:%(lineno)d} %(levelname)s - %(message)s"
+    )
     handler.setFormatter(formatter)
     root.addHandler(handler)
 

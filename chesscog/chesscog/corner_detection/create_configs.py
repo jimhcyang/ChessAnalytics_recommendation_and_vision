@@ -24,17 +24,20 @@ parameters = {
     "EDGE_DETECTION.HIGH_THRESHOLD": np.arange(100, 501, 50),
     # "EDGE_DETECTION.APERTURE": [3, 5],
     "LINE_DETECTION.THRESHOLD": np.arange(100, 251, 50),
-    "RANSAC.OFFSET_TOLERANCE": np.arange(.05, .201, .05),
-    "MAX_OUTLIER_INTERSECTION_POINT_RATIO_PER_LINE": np.arange(.5, .8, .2),
+    "RANSAC.OFFSET_TOLERANCE": np.arange(0.05, 0.201, 0.05),
+    "MAX_OUTLIER_INTERSECTION_POINT_RATIO_PER_LINE": np.arange(0.5, 0.8, 0.2),
     # "LINE_REFINEMENT.LINE_THRESHOLD": [2, 3, 4]
 }
 
-parameters = {k: (v.tolist() if isinstance(v, np.ndarray) else v)
-              for (k, v) in parameters.items()}
+parameters = {
+    k: (v.tolist() if isinstance(v, np.ndarray) else v) for (k, v) in parameters.items()
+}
 
 
 @listify
-def _add_parameter(key: str, values: typing.Iterable[typing.Any], cfgs: typing.List[CN]) -> list:
+def _add_parameter(
+    key: str, values: typing.Iterable[typing.Any], cfgs: typing.List[CN]
+) -> list:
     for value in values:
         for cfg in cfgs:
             cfg = cfg.clone()
@@ -52,7 +55,8 @@ def _is_valid_cfg(cfg: CN) -> bool:
 
 if __name__ == "__main__":
     argparse.ArgumentParser(
-        description="Create YAML config files for grid search.").parse_args()
+        description="Create YAML config files for grid search."
+    ).parse_args()
     cfg_folder = URI("config://corner_detection")
     cfg = CN.load_yaml_with_base(cfg_folder / "_base.yaml")
     cfgs = [cfg]

@@ -3,7 +3,9 @@ import typing
 from recap import CfgNode as CN
 
 
-def build_optimizer_from_config(optimizer_cfg: CN, params: typing.Iterable) -> torch.optim.Optimizer:
+def build_optimizer_from_config(
+    optimizer_cfg: CN, params: typing.Iterable
+) -> torch.optim.Optimizer:
     """Build an optimizer for neural network training from a configuration.
 
     Args:

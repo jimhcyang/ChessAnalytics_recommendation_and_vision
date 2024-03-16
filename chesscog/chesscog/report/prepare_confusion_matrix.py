@@ -22,11 +22,7 @@ import argparse
 from recap import URI
 import sys
 
-CATEGORIES = [
-    "P", "N", "B", "R", "Q", "K",
-    "p", "n", "b", "r", "q", "k",
-    None
-]
+CATEGORIES = ["P", "N", "B", "R", "Q", "K", "p", "n", "b", "r", "q", "k", None]
 
 LATEX_HEADINGS = [
     "\\WhitePawnOnWhite",
@@ -41,10 +37,9 @@ LATEX_HEADINGS = [
     "\\BlackRookOnWhite",
     "\\BlackQueenOnWhite",
     "\\BlackKingOnWhite",
-    "\\phantom{\\WhitePawnOnWhite}"
+    "\\phantom{\\WhitePawnOnWhite}",
 ]
-LATEX_HEADINGS = [("\\raisebox{-.2cm}{" + x + "}")
-                  for x in LATEX_HEADINGS]
+LATEX_HEADINGS = [("\\raisebox{-.2cm}{" + x + "}") for x in LATEX_HEADINGS]
 
 
 def _get_category(piece: typing.Union[chess.Piece, None]) -> str:
@@ -63,19 +58,24 @@ def _get_confusion_matrix(predicted: chess.Board, actual: chess.Board) -> np.nda
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(
-        description="Prepare confusion matrix for LaTeX")
-    parser.add_argument("--results", help="parent results folder",
-                        type=str, default="results://recognition")
-    parser.add_argument("--dataset", help="the dataset to evaluate",
-                        type=str, default="train")
+    parser = argparse.ArgumentParser(description="Prepare confusion matrix for LaTeX")
+    parser.add_argument(
+        "--results",
+        help="parent results folder",
+        type=str,
+        default="results://recognition",
+    )
+    parser.add_argument(
+        "--dataset", help="the dataset to evaluate", type=str, default="train"
+    )
     args = parser.parse_args()
 
     # Load data
     df = pd.read_csv(URI(args.results) / f"{args.dataset}.csv")
     if "fen_predicted" not in df.columns or "fen_actual" not in df.columns:
         print(
-            "FEN columns not found in the CSV; ensure you export the CSV using --save-fens")
+            "FEN columns not found in the CSV; ensure you export the CSV using --save-fens"
+        )
         sys.exit(-1)
 
     # Filter out samples where the corners could not be detected
@@ -95,6 +95,8 @@ if __name__ == "__main__":
         if value == 0:
             color = " " * len(color)
         return color + result
+
     for i, row in enumerate(matrix):
-        print(f"{LATEX_HEADINGS[i]:50s} & " +
-              " & ".join(map(convert_cell, row)) + " \\\\")
+        print(
+            f"{LATEX_HEADINGS[i]:50s} & " + " & ".join(map(convert_cell, row)) + " \\\\"
+        )

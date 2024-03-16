@@ -20,12 +20,15 @@ import argparse
 from chesscog.core.io import download_zip_folder
 
 
-ensure_models = functools.partial(download_zip_folder,
-                                  "https://github.com/georg-wolflein/chesscog/releases/download/0.2.7/transfer_learning_models.zip",
-                                  "models://transfer_learning")
+ensure_models = functools.partial(
+    download_zip_folder,
+    "https://github.com/georg-wolflein/chesscog/releases/download/0.2.7/transfer_learning_models.zip",
+    "models://transfer_learning",
+)
 
 
 if __name__ == "__main__":
     argparse.ArgumentParser(
-        description="Download the fine-tuned piece and occupancy classifiers.").parse_args()
+        description="Download the fine-tuned piece and occupancy classifiers."
+    ).parse_args()
     ensure_models(show_size=True)

@@ -34,7 +34,7 @@ def _find_best_configs(n: int, results_file: Path, output_folder: Path):
 
     for i, row in df.iterrows():
         configs = {
-            k[len("config."):]: v if not hasattr(v, "item") else v.item()
+            k[len("config.") :]: v if not hasattr(v, "item") else v.item()
             for k, v in row.items()
             if k.startswith("config.")
         }
@@ -46,16 +46,25 @@ def _find_best_configs(n: int, results_file: Path, output_folder: Path):
 
 if __name__ == "__main__":
     import argparse
+
     parser = argparse.ArgumentParser(
-        description="Get the best n configs of the results obtained via grid search")
-    parser.add_argument("--n",
-                        help="the number of configs to retain",
-                        type=int, default=100)
-    parser.add_argument("--in", dest="input",
-                        help="the CSV file containing the results of the grid search",
-                        type=str, default="results://corner_detection/evaluate.csv")
-    parser.add_argument("--out",
-                        help="the output folder for the YAML files",
-                        type=str, default="config://corner_detection/refined")
+        description="Get the best n configs of the results obtained via grid search"
+    )
+    parser.add_argument(
+        "--n", help="the number of configs to retain", type=int, default=100
+    )
+    parser.add_argument(
+        "--in",
+        dest="input",
+        help="the CSV file containing the results of the grid search",
+        type=str,
+        default="results://corner_detection/evaluate.csv",
+    )
+    parser.add_argument(
+        "--out",
+        help="the output folder for the YAML files",
+        type=str,
+        default="config://corner_detection/refined",
+    )
     args = parser.parse_args()
     _find_best_configs(args.n, URI(args.input), URI(args.out))

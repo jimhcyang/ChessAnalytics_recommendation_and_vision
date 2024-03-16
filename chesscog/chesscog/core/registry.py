@@ -6,7 +6,7 @@ import typing
 
 
 class Registry:
-    """A registry class. 
+    """A registry class.
 
     A registry is a collection of functions or classes that are each associated with a name.
     These can be loaded dynamically based on a configuration.

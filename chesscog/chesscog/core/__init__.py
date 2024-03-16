@@ -7,8 +7,14 @@ from collections.abc import Iterable
 #: Device to be used for computation (GPU if available, else CPU).
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 
-T = typing.Union[torch.Tensor, torch.nn.Module, typing.List[torch.Tensor],
-                 tuple, dict, typing.Generator]
+T = typing.Union[
+    torch.Tensor,
+    torch.nn.Module,
+    typing.List[torch.Tensor],
+    tuple,
+    dict,
+    typing.Generator,
+]
 
 
 def device(x: T, dev: str = DEVICE) -> T:
@@ -60,7 +66,9 @@ def sort_corner_points(points: np.ndarray) -> np.ndarray:
     return points
 
 
-def listify(func: typing.Callable[..., typing.Iterable]) -> typing.Callable[..., typing.List]:
+def listify(
+    func: typing.Callable[..., typing.Iterable]
+) -> typing.Callable[..., typing.List]:
     """Decorator to convert the output of a generator function to a list.
 
     Args:
@@ -73,4 +81,5 @@ def listify(func: typing.Callable[..., typing.Iterable]) -> typing.Callable[...,
     @functools.wraps(func)
     def wrapper(*args, **kwargs):
         return list(func(*args, **kwargs))
+
     return wrapper

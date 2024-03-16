@@ -34,7 +34,13 @@ from chesscog.corner_detection import find_corners
 logger = logging.getLogger(__name__)
 
 
-def _evaluate(cfg: CN, dataset: Datasets, output_folder: Path, find_mistakes: bool = False, include_heading: bool = False) -> str:
+def _evaluate(
+    cfg: CN,
+    dataset: Datasets,
+    output_folder: Path,
+    find_mistakes: bool = False,
+    include_heading: bool = False,
+) -> str:
     mistakes = 0
     total = 0
     folder = URI("data://render") / dataset.value
@@ -55,26 +61,42 @@ def _evaluate(cfg: CN, dataset: Datasets, output_folder: Path, find_mistakes: bo
             actual = sort_corner_points(actual)
             predicted = sort_corner_points(predicted)
 
-        if predicted is None or np.linalg.norm(actual - predicted, axis=-1).max() > 10.:
+        if (
+            predicted is None
+            or np.linalg.norm(actual - predicted, axis=-1).max() > 10.0
+        ):
             mistakes += 1
     return mistakes, total
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
-        description="Evaluate the chessboard corner detector.")
-    parser.add_argument("--config",
-                        help="path to a folder with YAML config files (or path to a YAML config file)",
-                        type=str, default="config://corner_detection.yaml")
-    parser.add_argument("--dataset", help="the dataset to evaluate (if unspecified, train and val will be evaluated)",
-                        type=str, default=None, choices=[x.value for x in Datasets])
-    parser.add_argument("--out", help="output folder", type=str,
-                        default=f"results://corner_detection")
+        description="Evaluate the chessboard corner detector."
+    )
+    parser.add_argument(
+        "--config",
+        help="path to a folder with YAML config files (or path to a YAML config file)",
+        type=str,
+        default="config://corner_detection.yaml",
+    )
+    parser.add_argument(
+        "--dataset",
+        help="the dataset to evaluate (if unspecified, train and val will be evaluated)",
+        type=str,
+        default=None,
+        choices=[x.value for x in Datasets],
+    )
+    parser.add_argument(
+        "--out", help="output folder", type=str, default=f"results://corner_detection"
+    )
     parser.set_defaults(find_mistakes=False)
     args = parser.parse_args()
 
-    datasets = [Datasets.TRAIN, Datasets.VAL] \
-        if args.dataset is None else [d for d in Datasets if d.value == args.dataset]
+    datasets = (
+        [Datasets.TRAIN, Datasets.VAL]
+        if args.dataset is None
+        else [d for d in Datasets if d.value == args.dataset]
+    )
     config_path = URI(args.config)
     if config_path.is_dir():
         cfgs = URI(args.config).glob("*.yaml")
@@ -97,8 +119,7 @@ if __name__ == "__main__":
                 values.extend(f"config.{x}" for x in cfg_headers)
                 f.write(",".join(values) + "\n")
             for dataset in datasets:
-                mistakes, total = _evaluate(
-                    cfg, dataset, args.out, args.find_mistakes)
+                mistakes, total = _evaluate(cfg, dataset, args.out, args.find_mistakes)
                 values = [dataset.name, mistakes, total]
                 values.extend(params[k] for k in cfg_headers)
                 values = map(str, values)

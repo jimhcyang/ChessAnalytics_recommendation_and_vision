@@ -13,8 +13,7 @@ def to_homogenous_coordinates(coordinates: np.ndarray) -> np.ndarray:
     Returns:
         np.ndarray: the homogenous coordinates (shape: [..., 3])
     """
-    return np.concatenate([coordinates,
-                           np.ones((*coordinates.shape[:-1], 1))], axis=-1)
+    return np.concatenate([coordinates, np.ones((*coordinates.shape[:-1], 1))], axis=-1)
 
 
 def from_homogenous_coordinates(coordinates: np.ndarray) -> np.ndarray:

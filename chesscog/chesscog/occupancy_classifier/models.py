@@ -19,8 +19,7 @@ MODELS_REGISTRY.register_as("OCCUPANCY_CLASSIFIER")(MODEL_REGISTRY)
 
 @MODEL_REGISTRY.register
 class CNN100_3Conv_3Pool_3FC(nn.Module):
-    """CNN (100, 3, 3, 3) model.
-    """
+    """CNN (100, 3, 3, 3) model."""
 
     input_size = 100, 100
     pretrained = False
@@ -51,8 +50,7 @@ class CNN100_3Conv_3Pool_3FC(nn.Module):
 
 @MODEL_REGISTRY.register
 class CNN100_3Conv_3Pool_2FC(nn.Module):
-    """CNN (100, 3, 3, 2) model.
-    """
+    """CNN (100, 3, 3, 2) model."""
 
     input_size = 100, 100
     pretrained = False
@@ -81,8 +79,7 @@ class CNN100_3Conv_3Pool_2FC(nn.Module):
 
 @MODEL_REGISTRY.register
 class CNN50_2Conv_2Pool_3FC(nn.Module):
-    """CNN (50, 2, 2, 3) model.
-    """
+    """CNN (50, 2, 2, 3) model."""
 
     input_size = 50, 50
     pretrained = False
@@ -110,8 +107,7 @@ class CNN50_2Conv_2Pool_3FC(nn.Module):
 
 @MODEL_REGISTRY.register
 class CNN50_2Conv_2Pool_2FC(nn.Module):
-    """CNN (50, 2, 2, 2) model.
-    """
+    """CNN (50, 2, 2, 2) model."""
 
     input_size = 50, 50
     pretrained = False
@@ -137,8 +133,7 @@ class CNN50_2Conv_2Pool_2FC(nn.Module):
 
 @MODEL_REGISTRY.register
 class CNN50_3Conv_1Pool_2FC(nn.Module):
-    """CNN (50, 3, 1, 2) model.
-    """
+    """CNN (50, 3, 1, 2) model."""
 
     input_size = 50, 50
     pretrained = False
@@ -166,8 +161,7 @@ class CNN50_3Conv_1Pool_2FC(nn.Module):
 
 @MODEL_REGISTRY.register
 class CNN50_3Conv_1Pool_3FC(nn.Module):
-    """CNN (50, 3, 1, 3) model.
-    """
+    """CNN (50, 3, 1, 3) model."""
 
     input_size = 50, 50
     pretrained = False
@@ -197,8 +191,7 @@ class CNN50_3Conv_1Pool_3FC(nn.Module):
 
 @MODEL_REGISTRY.register
 class AlexNet(nn.Module):
-    """AlexNet model.
-    """
+    """AlexNet model."""
 
     input_size = 100, 100
     pretrained = True
@@ -208,9 +201,7 @@ class AlexNet(nn.Module):
         self.model = models.alexnet(pretrained=True)
         n = self.model.classifier[6].in_features
         self.model.classifier[6] = nn.Linear(n, NUM_CLASSES)
-        self.params = {
-            "head": list(self.model.classifier[6].parameters())
-        }
+        self.params = {"head": list(self.model.classifier[6].parameters())}
 
     def forward(self, x):
         return self.model(x)
@@ -218,8 +209,7 @@ class AlexNet(nn.Module):
 
 @MODEL_REGISTRY.register
 class ResNet(nn.Module):
-    """ResNet model.
-    """
+    """ResNet model."""
 
     input_size = 100, 100
     pretrained = True
@@ -229,9 +219,7 @@ class ResNet(nn.Module):
         self.model = models.resnet18(pretrained=True)
         n = self.model.fc.in_features
         self.model.fc = nn.Linear(n, NUM_CLASSES)
-        self.params = {
-            "head": list(self.model.fc.parameters())
-        }
+        self.params = {"head": list(self.model.fc.parameters())}
 
     def forward(self, x):
         return self.model(x)
@@ -239,8 +227,7 @@ class ResNet(nn.Module):
 
 @MODEL_REGISTRY.register
 class VGG(nn.Module):
-    """VGG model.
-    """
+    """VGG model."""
 
     input_size = 100, 100
     pretrained = True
@@ -250,9 +237,7 @@ class VGG(nn.Module):
         self.model = models.vgg11_bn(pretrained=True)
         n = self.model.classifier[6].in_features
         self.model.classifier[6] = nn.Linear(n, NUM_CLASSES)
-        self.params = {
-            "head": list(self.model.classifier[6].parameters())
-        }
+        self.params = {"head": list(self.model.classifier[6].parameters())}
 
     def forward(self, x):
         return self.model(x)

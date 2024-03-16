@@ -29,8 +29,7 @@ DATASET_DIR = URI("data://transfer_learning")
 
 
 def _add_corners_to_train_labels(input_dir: Path):
-    corner_detection_cfg = CN.load_yaml_with_base(
-        "config://corner_detection.yaml")
+    corner_detection_cfg = CN.load_yaml_with_base("config://corner_detection.yaml")
     for subset in (x.value for x in (Datasets.TRAIN, Datasets.TEST)):
         for img_file in (input_dir / subset).glob("*.png"):
             img = cv2.imread(str(img_file))
@@ -49,13 +48,12 @@ def _add_corners_to_train_labels(input_dir: Path):
 
 def _create_dataset(input_dir: Path = DATASET_DIR / "images"):
     _add_corners_to_train_labels(input_dir)
-    create_occupancy_dataset.create_dataset(input_dir,
-                                            DATASET_DIR / "occupancy")
-    create_pieces_dataset.create_dataset(input_dir,
-                                         DATASET_DIR / "pieces")
+    create_occupancy_dataset.create_dataset(input_dir, DATASET_DIR / "occupancy")
+    create_pieces_dataset.create_dataset(input_dir, DATASET_DIR / "pieces")
 
 
 if __name__ == "__main__":
     argparse.ArgumentParser(
-        description="Create the piece and occupancy classification datasets.").parse_args()
+        description="Create the piece and occupancy classification datasets."
+    ).parse_args()
     _create_dataset()

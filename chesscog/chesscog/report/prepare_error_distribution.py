@@ -25,11 +25,17 @@ import sys
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
-        description="Prepare distribution of mistakes per board for LaTeX")
-    parser.add_argument("--results", help="parent results folder",
-                        type=str, default="results://recognition")
-    parser.add_argument("--dataset", help="the dataset to evaluate",
-                        type=str, default="train")
+        description="Prepare distribution of mistakes per board for LaTeX"
+    )
+    parser.add_argument(
+        "--results",
+        help="parent results folder",
+        type=str,
+        default="results://recognition",
+    )
+    parser.add_argument(
+        "--dataset", help="the dataset to evaluate", type=str, default="train"
+    )
     args = parser.parse_args()
 
     # Load data
@@ -45,4 +51,5 @@ if __name__ == "__main__":
         print(f"({i:2d},{count:5.02f})")
 
     print(
-        f"Proportion of boards classified with >=2 mistakes: {counts[counts.index >= 2].sum():.02}%")
+        f"Proportion of boards classified with >=2 mistakes: {counts[counts.index >= 2].sum():.02}%"
+    )

@@ -25,8 +25,7 @@ def color_name(color: chess.Color) -> str:
     Returns:
         str: the string representation
     """
-    return {chess.WHITE: "white",
-            chess.BLACK: "black"}[color]
+    return {chess.WHITE: "white", chess.BLACK: "black"}[color]
 
 
 def piece_name(piece: chess.Piece) -> str:
@@ -67,12 +66,15 @@ def build_dataset(cfg: CN, mode: Datasets) -> torch.utils.data.Dataset:
         torch.utils.data.Dataset: the dataset
     """
     transform = build_transforms(cfg, mode)
-    dataset = torchvision.datasets.ImageFolder(root=URI(cfg.DATASET.PATH) / mode.value,
-                                               transform=transform)
+    dataset = torchvision.datasets.ImageFolder(
+        root=URI(cfg.DATASET.PATH) / mode.value, transform=transform
+    )
     return dataset
 
 
-def build_data_loader(cfg: CN, dataset: torch.utils.data.Dataset, mode: Datasets) -> torch.utils.data.DataLoader:
+def build_data_loader(
+    cfg: CN, dataset: torch.utils.data.Dataset, mode: Datasets
+) -> torch.utils.data.DataLoader:
     """Build a data loader for a dataset.
 
     Args:
@@ -85,5 +87,9 @@ def build_data_loader(cfg: CN, dataset: torch.utils.data.Dataset, mode: Datasets
     """
     shuffle = mode in {Datasets.TRAIN, Datasets.VAL}
 
-    return torch.utils.data.DataLoader(dataset, batch_size=cfg.DATASET.BATCH_SIZE,
-                                       shuffle=shuffle, num_workers=cfg.DATASET.WORKERS)
+    return torch.utils.data.DataLoader(
+        dataset,
+        batch_size=cfg.DATASET.BATCH_SIZE,
+        shuffle=shuffle,
+        num_workers=cfg.DATASET.WORKERS,
+    )

@@ -36,7 +36,8 @@ def _unzip(folder: Path, archive: str):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
-        description="Download the rendered dataset.").parse_args()
+        description="Download the rendered dataset."
+    ).parse_args()
 
     folder = URI("data://render")
     shutil.rmtree(folder, ignore_errors=True)
@@ -56,13 +57,19 @@ if __name__ == "__main__":
     # Unzip train
     logger.info("Merging train dataset")
     command = f"zip -s 0 {folder / 'train.zip'} --out {folder / 'train_full.zip'}"
-    if os.waitstatus_to_exitcode(os.system(command)) != 0 or not (folder / "train_full.zip").exists():
+    if (
+        os.waitstatus_to_exitcode(os.system(command)) != 0
+        or not (folder / "train_full.zip").exists()
+    ):
         logger.error(
-            f"Please manually merge train.zip and train.z01 in {folder}, and unpack the resulting ZIP file to {folder/'train'}.")
+            f"Please manually merge train.zip and train.z01 in {folder}, and unpack the resulting ZIP file to {folder/'train'}."
+        )
         logger.error(
-            f"On UNIX systems, the command to merge the ZIP files should look something like \"{command}\".")
+            f'On UNIX systems, the command to merge the ZIP files should look something like "{command}".'
+        )
         logger.error(
-            "Note that the validation and test sets have already been unpacked.")
+            "Note that the validation and test sets have already been unpacked."
+        )
         sys.exit(-1)
     else:
         for file in ("train.z01", "train.zip"):

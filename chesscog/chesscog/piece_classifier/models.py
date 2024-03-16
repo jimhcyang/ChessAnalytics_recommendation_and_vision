@@ -19,8 +19,7 @@ MODELS_REGISTRY.register_as("PIECE_CLASSIFIER")(MODEL_REGISTRY)
 
 @MODEL_REGISTRY.register
 class CNN100_3Conv_3Pool_3FC(nn.Module):
-    """CNN (100, 3, 3, 3) model.
-    """
+    """CNN (100, 3, 3, 3) model."""
 
     input_size = 100, 200
     pretrained = False
@@ -51,8 +50,7 @@ class CNN100_3Conv_3Pool_3FC(nn.Module):
 
 @MODEL_REGISTRY.register
 class CNN100_3Conv_3Pool_2FC(nn.Module):
-    """CNN (100, 3, 3, 2) model.
-    """
+    """CNN (100, 3, 3, 2) model."""
 
     input_size = 100, 200
     pretrained = False
@@ -81,8 +79,7 @@ class CNN100_3Conv_3Pool_2FC(nn.Module):
 
 @MODEL_REGISTRY.register
 class AlexNet(nn.Module):
-    """AlexNet model.
-    """
+    """AlexNet model."""
 
     input_size = 100, 200
     pretrained = True
@@ -92,9 +89,7 @@ class AlexNet(nn.Module):
         self.model = models.alexnet(pretrained=True)
         n = self.model.classifier[6].in_features
         self.model.classifier[6] = nn.Linear(n, NUM_CLASSES)
-        self.params = {
-            "head": list(self.model.classifier[6].parameters())
-        }
+        self.params = {"head": list(self.model.classifier[6].parameters())}
 
     def forward(self, x):
         return self.model(x)
@@ -102,8 +97,7 @@ class AlexNet(nn.Module):
 
 @MODEL_REGISTRY.register
 class ResNet(nn.Module):
-    """ResNet model.
-    """
+    """ResNet model."""
 
     input_size = 100, 200
     pretrained = True
@@ -113,9 +107,7 @@ class ResNet(nn.Module):
         self.model = models.resnet18(pretrained=True)
         n = self.model.fc.in_features
         self.model.fc = nn.Linear(n, NUM_CLASSES)
-        self.params = {
-            "head": list(self.model.fc.parameters())
-        }
+        self.params = {"head": list(self.model.fc.parameters())}
 
     def forward(self, x):
         return self.model(x)
@@ -123,8 +115,7 @@ class ResNet(nn.Module):
 
 @MODEL_REGISTRY.register
 class VGG(nn.Module):
-    """VGG model.
-    """
+    """VGG model."""
 
     input_size = 100, 200
     pretrained = True
@@ -134,9 +125,7 @@ class VGG(nn.Module):
         self.model = models.vgg11_bn(pretrained=True)
         n = self.model.classifier[6].in_features
         self.model.classifier[6] = nn.Linear(n, NUM_CLASSES)
-        self.params = {
-            "head": list(self.model.classifier[6].parameters())
-        }
+        self.params = {"head": list(self.model.classifier[6].parameters())}
 
     def forward(self, x):
         return self.model(x)
@@ -144,8 +133,7 @@ class VGG(nn.Module):
 
 @MODEL_REGISTRY.register
 class InceptionV3(nn.Module):
-    """InceptionV3 model.
-    """
+    """InceptionV3 model."""
 
     input_size = 299, 299
     pretrained = True
@@ -160,7 +148,8 @@ class InceptionV3(nn.Module):
         n = self.model.fc.in_features
         self.model.fc = nn.Linear(n, NUM_CLASSES)
         self.params = {
-            "head": list(self.model.AuxLogits.fc.parameters()) + list(self.model.fc.parameters())
+            "head": list(self.model.AuxLogits.fc.parameters())
+            + list(self.model.fc.parameters())
         }
 
     def forward(self, x):

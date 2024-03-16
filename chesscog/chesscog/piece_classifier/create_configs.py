@@ -18,5 +18,6 @@ import argparse
 
 if __name__ == "__main__":
     argparse.ArgumentParser(
-        description="Generate the YAML configuration for the piece classifiers.").parse_args()
+        description="Generate the YAML configuration for the piece classifiers."
+    ).parse_args()
     create_configs("piece_classifier")

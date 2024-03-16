@@ -9,12 +9,11 @@ from recap import CfgNode as CN
 
 
 def _fraction(a: float, b: float) -> float:
-    return a/b if b != 0 else 0
+    return a / b if b != 0 else 0
 
 
-class StatsAggregator():
-    """Simple class for aggregating statistics between batches.
-    """
+class StatsAggregator:
+    """Simple class for aggregating statistics between batches."""
 
     def __init__(self, classes: list):
         self.classes = classes
@@ -23,13 +22,18 @@ class StatsAggregator():
         self.mistakes = []
 
     def reset(self):
-        """Reset the aggregator.
-        """
-        self.confusion_matrix = np.zeros((len(self.classes), len(self.classes)),
-                                         dtype=np.uint32)
+        """Reset the aggregator."""
+        self.confusion_matrix = np.zeros(
+            (len(self.classes), len(self.classes)), dtype=np.uint32
+        )
         self.mistakes = []
 
-    def add_batch(self, one_hot_outputs: torch.Tensor, labels: torch.Tensor, inputs: torch.Tensor = None):
+    def add_batch(
+        self,
+        one_hot_outputs: torch.Tensor,
+        labels: torch.Tensor,
+        inputs: torch.Tensor = None,
+    ):
         """Add a batch to compute statistics over.
 
         Args:
@@ -43,8 +47,9 @@ class StatsAggregator():
             predicted_mask = outputs == predicted_class
             for actual_class, _ in enumerate(self.classes):
                 actual_mask = labels == actual_class
-                self.confusion_matrix[predicted_class,
-                                      actual_class] += (actual_mask & predicted_mask).sum()
+                self.confusion_matrix[predicted_class, actual_class] += (
+                    actual_mask & predicted_mask
+                ).sum()
         if inputs is not None:
             mistakes_mask = outputs != labels
             mistakes = inputs[mistakes_mask].cpu().numpy()

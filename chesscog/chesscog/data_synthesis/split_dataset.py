@@ -21,22 +21,25 @@ logger = getLogger(__name__)
 
 if __name__ == "__main__":
     argparse.ArgumentParser(
-        description="Split the dataset into train/val/test.").parse_args()
+        description="Split the dataset into train/val/test."
+    ).parse_args()
 
-    val_split = .03
-    test_split = .1
+    val_split = 0.03
+    test_split = 0.1
     render_dir = URI("data://render")
     ids = np.array([x.stem for x in render_dir.glob("*.json")])
     if len(ids) == 0:
         logger.warning(
-            "No samples found in 'data://render', either you did not download the datset yet or you have already split it.")
+            "No samples found in 'data://render', either you did not download the datset yet or you have already split it."
+        )
     np.random.seed(42)
     ids = np.random.permutation(ids)
-    sample_sizes = (np.array([val_split, test_split])
-                    * len(ids)).astype(np.int32)
+    sample_sizes = (np.array([val_split, test_split]) * len(ids)).astype(np.int32)
     val, test, train = np.split(ids, sample_sizes)
     datasets = {"val": val, "test": test, "train": train}
-    print(f"{len(ids)} samples will be split into {len(train)} train, {len(val)} val, {len(test)} test.")
+    print(
+        f"{len(ids)} samples will be split into {len(train)} train, {len(val)} val, {len(test)} test."
+    )
 
     for dataset_name, ids in datasets.items():
         dataset_dir = render_dir / dataset_name

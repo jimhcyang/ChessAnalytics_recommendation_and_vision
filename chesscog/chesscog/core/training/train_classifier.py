@@ -23,13 +23,17 @@ def train_classifier(name: str):
         train(cfg, run_dir)
 
     # Read available configs
-    configs = [x.stem for x in configs_dir.glob("*.yaml")
-               if not x.stem.startswith("_")]
+    configs = [x.stem for x in configs_dir.glob("*.yaml") if not x.stem.startswith("_")]
 
     # Set up argument parser
     parser = argparse.ArgumentParser(description="Train the network.")
-    parser.add_argument("--config", help="the configuration to train (default: all)",
-                        type=str, choices=configs, default=None)
+    parser.add_argument(
+        "--config",
+        help="the configuration to train (default: all)",
+        type=str,
+        choices=configs,
+        default=None,
+    )
     args = parser.parse_args()
 
     # Train
