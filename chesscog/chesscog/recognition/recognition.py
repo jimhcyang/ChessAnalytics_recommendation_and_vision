@@ -67,7 +67,8 @@ class ChessRecognizer:
         self._pieces_cfg, self._pieces_model = self._load_classifier(
             classifiers_folder / "piece_classifier"
         )
-        self._pieces_transforms = build_transforms(self._pieces_cfg, mode=Datasets.TEST)
+        self._pieces_transforms = build_transforms(
+            self._pieces_cfg, mode=Datasets.TEST)
         self._piece_classes = np.array(
             list(map(name_to_piece, self._pieces_cfg.DATASET.CLASSES))
         )
@@ -80,6 +81,8 @@ class ChessRecognizer:
         model = torch.load(model_file, map_location=DEVICE)
         model = device(model)
         model.eval()
+        print(f"model_file: {model_file}")
+        print(model)
         return cfg, model
 
     def _classify_occupancy(
@@ -87,7 +90,8 @@ class ChessRecognizer:
     ) -> np.ndarray:
         warped = create_occupancy_dataset.warp_chessboard_image(img, corners)
         square_imgs = map(
-            functools.partial(create_occupancy_dataset.crop_square, warped, turn=turn),
+            functools.partial(
+                create_occupancy_dataset.crop_square, warped, turn=turn),
             self._squares,
         )
         square_imgs = map(Image.fromarray, square_imgs)
@@ -112,7 +116,8 @@ class ChessRecognizer:
         occupied_squares = np.array(self._squares)[occupancy]
         warped = create_piece_dataset.warp_chessboard_image(img, corners)
         piece_imgs = map(
-            functools.partial(create_piece_dataset.crop_square, warped, turn=turn),
+            functools.partial(
+                create_piece_dataset.crop_square, warped, turn=turn),
             occupied_squares,
         )
         piece_imgs = map(Image.fromarray, piece_imgs)
