@@ -1,4 +1,4 @@
-Working with GitHub repo
+## Working with GitHub repo ## 
 
 
 Clone repo locally in dir of your choice (example personal_github is dir)
@@ -65,3 +65,30 @@ Untracked files:
 nothing added to commit but untracked files present (use "git add" to track)
 ```
 
+Stage file
+
+`➜  capstone git:(main) ✗ git add * `
+
+Commit changes
+
+```
+➜  capstone git:(main) ✗ git commit -m "add github nodes readme"           
+[main 6e3d292] add github nodes readme
+ 1 file changed, 67 insertions(+)
+ create mode 100644 github_notes.md
+ ```
+ 
+ Push committed changes to remote repo
+ 
+ ```
+ ➜  capstone git:(main) ✗ git push                               
+Enumerating objects: 4, done.
+Counting objects: 100% (4/4), done.
+Delta compression using up to 10 threads
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 1006 bytes | 1006.00 KiB/s, done.
+Total 3 (delta 1), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (1/1), completed with 1 local object.
+To https://github.com/nankivel/capstone.git
+   6406221..6e3d292  main -> main
+```
