@@ -13,11 +13,7 @@ import chess.svg
 import os
 import re
 
-def games_from_drive():
-    max_games = 500000 
-    asset_dir = 'asset'
-    file_name = '2023_tc_500000_games.pgn'
-
+def games_from_drive(file_name='2023_tc_500000_games.pgn', max_games=500000, asset_dir='asset'):
     gauth = GoogleAuth()
     gauth.DEFAULT_SETTINGS['client_config_file'] = 'client_secret_1057507276332-5mk9ac9q22rsmtm1idlqvpraq08ar8p5.apps.googleusercontent.com.json'
     gauth.LoadCredentialsFile("mycreds.txt")
