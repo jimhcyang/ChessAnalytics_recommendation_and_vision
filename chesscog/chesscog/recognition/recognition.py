@@ -38,6 +38,7 @@ from chesscog.piece_classifier import create_dataset as create_piece_dataset
 from chesscog.core import device, DEVICE
 from chesscog.core.dataset import build_transforms, Datasets
 from chesscog.core.dataset import name_to_piece
+from chesscog.viz.model_viz import visualize_model_torchviz
 
 
 class ChessRecognizer:
@@ -81,8 +82,10 @@ class ChessRecognizer:
         model = torch.load(model_file, map_location=DEVICE)
         model = device(model)
         model.eval()
-        print(f"model_file: {model_file}")
-        print(model)
+        #print(f"model_file: {model_file}")
+        #print(model)
+        #TODO: visualize the model independently, not when using it
+        visualize_model_torchviz(model, filename=f"{model_file}_viz.png")
         return cfg, model
 
     def _classify_occupancy(
