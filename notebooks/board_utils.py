@@ -4,6 +4,9 @@ from tqdm import tqdm
 from sklearn.preprocessing import normalize
 from scipy.sparse import csr_matrix, vstack
 from scipy.spatial.distance import cdist
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
 import numpy as np
 import pandas as pd
 import io
@@ -365,3 +368,48 @@ def apply_query_transformations(query, matrix):
     scaled_query = query.reshape(1, -1) * idf
     normalized_query = normalize(scaled_query, norm='l2', axis=1)
     return normalized_query
+
+class ResidualBlock(nn.Module):
+    def __init__(self, in_channels):
+        super(ResidualBlock, self).__init__()
+        self.conv1 = nn.Conv2d(in_channels, in_channels, kernel_size=3, padding=1, bias=False)
+        self.bn1 = nn.BatchNorm2d(in_channels)
+        self.conv2 = nn.Conv2d(in_channels, in_channels, kernel_size=3, padding=1, bias=False)
+        self.bn2 = nn.BatchNorm2d(in_channels)
+
+    def forward(self, x):
+        residual = x
+        out = F.relu(self.bn1(self.conv1(x)))
+        out = self.bn2(self.conv2(out))
+        out += residual
+        out = F.relu(out)
+        return out
+
+class ChessCNN(nn.Module):
+    def __init__(self):
+        super(ChessCNN, self).__init__()
+        self.conv1 = nn.Conv2d(12, 64, kernel_size=3, padding=1, bias=False)
+        self.bn1 = nn.BatchNorm2d(64)
+
+        self.res_blocks = nn.Sequential(
+            ResidualBlock(64),
+            ResidualBlock(64),
+            ResidualBlock(64),
+            ResidualBlock(64)
+        )
+        
+        self.conv2 = nn.Conv2d(64, 32, kernel_size=1)
+        self.bn2 = nn.BatchNorm2d(32)
+        self.fc1 = nn.Linear(32 * 8 * 8, 256)
+        self.fc2 = nn.Linear(256, 1)
+
+    def forward(self, x, return_intermediate=False):
+        x = F.relu(self.bn1(self.conv1(x)))
+        x = self.res_blocks(x)
+        if return_intermediate:
+            return x
+        x = F.relu(self.bn2(self.conv2(x)))
+        x = torch.flatten(x, 1)
+        x = F.relu(self.fc1(x))
+        x = self.fc2(x)
+        return x
