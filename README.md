@@ -27,31 +27,20 @@ Computer Vision
 - [https://paperswithcode.com/dataset/dataset-of-rendered-chess-game-state-images](https://theweekinchess.com/twic)
 
 
-Project Organization
-------------
+Computer Vision
+---------------
+This project extends the work of Georg Wölflein and Patrick Lindemann and their [chesscog](https://github.com/georg-wolflein/chesscog) project. In order to more easily get started we are using an older version of python to maintain the compatibility of the libraries used in that original project. In addition rather than using their setup method we have created a requirements.txt that can be used to install the necessary libraries and versions in your python 3.10 environment. Using venv from the root dir:
 
-    ├── LICENSE
-    ├── README.md          <- The top-level README for developers using this project.
-    ├── data
-    │   ├── external       <- Data from third party sources.
-    │   ├── interim        <- Intermediate data that has been transformed.
-    │   ├── processed      <- The final, canonical data sets for modeling.
-    │   └── raw            <- The original, immutable data dump.
-    │
-    ├── docs               <- A default Sphinx project; see sphinx-doc.org for details
-    │
-    ├── models             <- Trained and serialized models, model predictions, or model summaries
-    │
-    ├── notebooks          <- Jupyter notebooks. Naming convention is a number (for ordering),
-    │                         the creator's initials, and a short `-` delimited description, e.g.
-    │                         `1.0-jqp-initial-data-exploration`.
-    │
-    ├── requirements.txt   <- The requirements file for reproducing the analysis environment, e.g.
-    │                         generated with `pip freeze > requirements.txt`
-    │
-    ├── src                <- Source code for use in this project.
+```
+# create environment using python 3.10 (install if you don't have it already)
+python3.10 -m venv .venv
 
+source .venv/bin/activate
 
---------
+# validate the correct version of python
+✗ python --version        
+Python 3.10.13
 
-<p><small>Project based on the <a target="_blank" href="https://drivendata.github.io/cookiecutter-data-science/">cookiecutter data science project template</a>. #cookiecutterdatascience</small></p>
+# install dependencies
+pip install -r requirements.txt
+```
