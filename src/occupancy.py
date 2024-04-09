@@ -7,28 +7,6 @@ import pandas as pd
 from PIL import Image
 
 
-def fen_to_occupancy(fen):
-    # Initialize the occupancy string
-    occupancy = ""
-
-    # Split the FEN string at spaces and take the first part (ignoring other game state information)
-    fen_position = fen.split()[0]
-
-    # Iterate over each character in the FEN position
-    for char in fen_position:
-        if char.isdigit():
-            # If the character is a digit, add that many '0's to the occupancy string
-            occupancy += '0' * int(char)
-        elif char == '/':
-            # If the character is a slash, ignore it (it's just a row separator)
-            continue
-        else:
-            # Any other character represents a piece, so add '1'
-            occupancy += '1'
-
-    return occupancy
-
-
 class ChessBoardDataset(Dataset):
     def __init__(self, img_dir, annotation_file, transform=None):
         self.img_labels = pd.read_csv(annotation_file)
@@ -46,6 +24,8 @@ class ChessBoardDataset(Dataset):
         if self.transform:
             image = self.transform(image)
         return image, label
+
+# TODO: seperate into a training module
 
 
 transform = transforms.Compose([
