@@ -21,7 +21,8 @@ Chess Games
 
 Computer Vision
 
-- [https://www.kaggle.com/datasets/thefamousrat/synthetic-chess-board-images/data](https://theweekinchess.com/twic)
-- [https://doi.org/10.4121/99b5c721-280b-450b-b058-b2900b69a90f.v2](https://theweekinchess.com/twic)
-- [https://public.roboflow.com/object-detection/chess-full](https://theweekinchess.com/twic)
-- [https://paperswithcode.com/dataset/dataset-of-rendered-chess-game-state-images](https://theweekinchess.com/twic)
+- [https://www.kaggle.com/datasets/thefamousrat/synthetic-chess-board-images/data](https://www.kaggle.com/datasets/thefamousrat/synthetic-chess-board-images/data)
+- [https://doi.org/10.4121/99b5c721-280b-450b-b058-b2900b69a90f.v2](https://doi.org/10.4121/99b5c721-280b-450b-b058-b2900b69a90f.v2)
+- [https://public.roboflow.com/object-detection/chess-full](https://public.roboflow.com/object-detection/chess-full)
+- [https://paperswithcode.com/dataset/dataset-of-rendered-chess-game-state-images](https://paperswithcode.com/dataset/dataset-of-rendered-chess-game-state-images)
+- [https://www.kaggle.com/datasets/koryakinp/chess-positions](https://www.kaggle.com/datasets/koryakinp/chess-positions)
