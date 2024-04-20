@@ -38,7 +38,8 @@ def detect_occupancy(path_image, threshold, save_squares=False):
             board.set_piece_at(chess.parse_square(square),
                                chess.Piece(chess.PAWN, chess.WHITE))
         if board.fen() == fen_pawns:
-            print("Correct")
-
+            return "Success"
         else:
-            print("Mismatch")
+            return "Occupancy mismatch"
+    else:
+        return "Failed to detect squares"
