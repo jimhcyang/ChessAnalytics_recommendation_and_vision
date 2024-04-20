@@ -24,8 +24,10 @@ def detect_occupancy(path_image, threshold):
             square_location = mapping[index]
             square = image[y:y+h, x:x+w]
             std_dev = np.std(square)
-            cv2.imwrite(
-                f"data/square_extraction/{name_image}_{square_location}_stddev_{round(std_dev, 2)}.jpeg", square)
+            if not np.isnan(std_dev):
+                pass
+                # cv2.imwrite(f"data/square_extraction/{name_image}_{
+                #             square_location}_stddev_{round(std_dev, 2)}.jpeg", square)
             if std_dev > threshold:
                 occupied.append((x, y))
                 occupied_fen.append(square_location)
@@ -38,5 +40,6 @@ def detect_occupancy(path_image, threshold):
                                chess.Piece(chess.PAWN, chess.WHITE))
         if board.fen() == fen_pawns:
             print("Correct")
+
         else:
             print("Mismatch")
