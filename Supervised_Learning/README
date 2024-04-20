@@ -1,1 +1,19 @@
-This folder stores the notebooks of the supervised learning codes
+This folder stores the notebooks for building a chess engine using the supervised learning approach.
+
+Pipeline:
+1. data_generation.ipynb: 
+	a. download the original ZST file that contains board positions
+	b. process the ZST file and dump JSON files
+	c. process JSON files to create input data that contains X: encoded board positions and y: stockfish evaluations
+
+2. ResNet7, ResNet13, PlainNet1, and PlainNet3 model training notebooks using the input data from 1. These models share the same input block and output block. The differences are in the middle layers:
+	a. ResNet7 uses seven residual blocks
+	b. ResNet13 uses thirteen residual blocks
+	c. PlainNet1 uses one plain convolutional block
+	d. PlainNet3 uses three plain convolutional blocks
+
+ResNet shows good stability with increased model depth while PlainNet does not. Plain convolutional architecture is not very suitable for representing chess board features.
+
+3. GamePlay: this notebook is a arena that different models play against each other
+
+4. Plots: supplementary notebook that generates model performance metrics plots
