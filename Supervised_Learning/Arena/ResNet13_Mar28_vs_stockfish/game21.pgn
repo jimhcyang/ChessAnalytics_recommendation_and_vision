@@ -1,0 +1,15 @@
+[Event "Game Play"]
+[Site "Google Colab"]
+[Date "2024.04.09 10:21:34"]
+[Round "21"]
+[White "ResNet13_Mar28"]
+[Black "stockfish"]
+[Result "0-1"]
+
+1. h3 g5 2. f4 f5 3. d3 Nh6 4. Nc3 Ng8 5. e4 d6 6. Qh5+ Kd7 7. g3 gxf4 8. gxf4
+Nf6 9. Qxf5+ Ke8 10. Be3 Bxf5 11. O-O-O Bd7 12. d4 Nc6 13. d5 Nb4 14. Nf3 c6
+15. Ne5 dxe5 16. Rg1 Bh6 17. Rg8+ Rxg8 18. f5 Bxe3+ 19. Kb1 Kf8 20. a3 Na6 21.
+Bc4 c5 22. Ka2 Nc7 23. h4 Bf2 24. h5 Nxh5 25. Ne2 Ba4 26. Nc3 Bxc2 27. a4 Nf4
+28. Rd3 h5 29. f6 Bxd3 30. a5 exf6 31. b4 cxb4 32. Bb3 bxc3 33. Bc4 c2 34. Bb5
+c1=Q 35. a6 Nxb5 36. d6 Qa3# 0-1
+

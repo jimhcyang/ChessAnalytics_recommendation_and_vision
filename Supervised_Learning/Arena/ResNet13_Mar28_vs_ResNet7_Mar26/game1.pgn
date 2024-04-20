@@ -1,0 +1,10 @@
+[Event "Game Play"]
+[Site "Google Colab"]
+[Date "2024.04.05 16:09:24"]
+[Round "1"]
+[White "ResNet13_Mar28"]
+[Black "ResNet7_Mar27"]
+[Result "1-0"]
+
+1. e4 c6 2. e5 g5 3. Bc4 f5 4. Ke2 Bg7 5. Kf1 b5 6. Qh5+ Kf8 7. Qf7# 1-0
+

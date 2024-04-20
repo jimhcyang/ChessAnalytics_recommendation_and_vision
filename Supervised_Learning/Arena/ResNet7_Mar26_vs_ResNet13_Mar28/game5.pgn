@@ -1,0 +1,17 @@
+[Event "Game Play"]
+[Site "Google Colab"]
+[Date "2024.04.06 05:34:42"]
+[Round "5"]
+[White "ResNet7_Mar27"]
+[Black "ResNet13_Mar28"]
+[Result "1/2-1/2"]
+
+1. h3 a6 2. c4 Nc6 3. b4 a5 4. Bb2 Ra7 5. a4 Ra6 6. b5 Ne5 7. Bc3 Nd3+ 8. exd3
+d6 9. d4 e5 10. dxe5 dxe5 11. Bxe5 Nf6 12. Bxc7 Qxc7 13. Be2 Qe7 14. bxa6 bxa6
+15. c5 Bb7 16. c6 Bxc6 17. Nf3 Bd5 18. Ng5 Qb4 19. Nc3 Qxc3 20. dxc3 Be7 21.
+Qxd5 Nxd5 22. Nxf7 Nxc3 23. Bc4 Rg8 24. h4 Kd7 25. Ne5+ Ke8 26. Bf7+ Kd8 27.
+O-O Ne2+ 28. Kh2 Bxh4 29. Rad1+ Kc8 30. Rc1+ Kb8 31. Rb1+ Ka8 32. Kh3 Nf4+ 33.
+Kxh4 Nxg2+ 34. Kg5 Rf8 35. Rfd1 h6+ 36. Kg6 Nh4+ 37. Kxg7 Rxf7+ 38. Nxf7 Nf5+
+39. Kg6 Nh4+ 40. Kg7 Nf5+ 41. Kg6 Nh4+ 42. Kg7 Nf5+ 43. Kg6 Nh4+ 44. Kg7 Nf5+
+45. Kg6 Nh4+ 46. Kg7 1/2-1/2
+

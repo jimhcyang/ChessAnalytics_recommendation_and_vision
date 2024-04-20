@@ -1,0 +1,12 @@
+[Event "Game Play"]
+[Site "Google Colab"]
+[Date "2024.04.07 00:24:31"]
+[Round "10"]
+[White "PlainNet1_Mar31"]
+[Black "ResNet7_Mar26"]
+[Result "1-0"]
+
+1. g3 b5 2. c3 d5 3. c4 Be6 4. g4 g6 5. d4 f6 6. Bh3 dxc4 7. a4 c6 8. axb5 a5
+9. bxc6 Qd6 10. Nc3 Bh6 11. Bxh6 Nxh6 12. e3 Nxg4 13. e4 Nxh2 14. f4 Bxh3 15.
+Qe2 Nf3+ 16. Nxf3 Qxc6 17. Qh2 Qxe4+ 18. Nxe4 O-O 19. Nc5 Bf5 20. Qxh7# 1-0
+

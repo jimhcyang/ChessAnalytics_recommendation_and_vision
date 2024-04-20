@@ -1,0 +1,23 @@
+[Event "Game Play"]
+[Site "Google Colab"]
+[Date "2024.04.05 16:37:43"]
+[Round "3"]
+[White "ResNet13_Mar28"]
+[Black "ResNet7_Mar27"]
+[Result "1/2-1/2"]
+
+1. a4 a6 2. Nf3 h6 3. a5 b5 4. Ne5 Nc6 5. f3 d6 6. Nxc6 Bb7 7. Nxd8 Rxd8 8. c4
+c5 9. d4 cxd4 10. Qxd4 bxc4 11. Qb6 Ba8 12. Qxd8+ Kxd8 13. Ra2 Kd7 14. e4 Bxe4
+15. fxe4 e6 16. Ra3 Nf6 17. Be2 Be7 18. Kf2 Nxe4+ 19. Kf1 Nf6 20. Bf4 Rb8 21.
+Nc3 Rxb2 22. Kf2 Rxe2+ 23. Kxe2 Kc6 24. Kf3 Nd5 25. Rb1 Nxc3 26. Rxc3 e5 27.
+Rxc4+ Kd7 28. Bxh6 f5 29. Bxg7 Bg5 30. Bh8 Ke7 31. Rc7+ Kd8 32. Bxe5 Kxc7 33.
+Bxd6+ Kxd6 34. Rb4 Ke6 35. Rb6+ Kf7 36. Rxa6 Bd2 37. Rh6 Bxh6 38. a6 Bd2 39. a7
+Bg5 40. a8=Q Ke6 41. Qc6+ Kf7 42. Qc4+ Kf8 43. Qd5 Bh4 44. Kf4 Bf2 45. Qd3 Ke7
+46. h3 Kf8 47. Qd6+ Kg7 48. Qe5+ Kf7 49. Qd5+ Kg7 50. Qe5+ Kf7 51. Qd5+ Kg7 52.
+Qe5+ Kf7 53. Qd5+ Kg7 54. Qe5+ Kf7 55. Qd5+ Kg7 56. Kf3 Bh4 57. Qd4+ Kf8 58.
+Qxh4 Kg7 59. Qg5+ Kh7 60. Kf4 Kh8 61. Kf3 f4 62. Qa5 Kg8 63. Qc7 Kh8 64. Qa7
+Kg8 65. h4 Kh8 66. h5 Kg8 67. Qb7 Kh8 68. Qa7 Kg8 69. Qb7 Kh8 70. Qa7 Kg8 71.
+Qb7 Kh8 72. Qa7 Kg8 73. Qb7 Kh8 74. Qc7 Kg8 75. Qa7 Kf8 76. Qb7 Kg8 77. Qa7 Kf8
+78. Qb7 Kg8 79. Qa7 Kf8 80. Qb7 Kg8 81. Qa7 Kf8 82. Qb7 Kg8 83. Qc7 Kf8 84. Qa7
+Kg8 1/2-1/2
+

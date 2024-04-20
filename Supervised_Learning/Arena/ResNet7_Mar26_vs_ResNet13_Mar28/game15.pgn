@@ -1,0 +1,12 @@
+[Event "Game Play"]
+[Site "Google Colab"]
+[Date "2024.04.06 10:12:16"]
+[Round "15"]
+[White "ResNet7_Mar27"]
+[Black "ResNet13_Mar28"]
+[Result "1-0"]
+
+1. Nh3 Nf6 2. a3 Ng8 3. f4 b5 4. g3 h6 5. f5 c5 6. Bg2 Nf6 7. O-O d6 8. Nf4 a6
+9. Bxa8 Qc7 10. Ne6 Qb7 11. Bxb7 Bxb7 12. d4 Nbd7 13. dxc5 fxe6 14. fxe6 Nxc5
+15. Rxf6 gxf6 16. Qd2 Ne4 17. Qd4 d5 18. Qa7 Rg8 19. Qb8+ Bc8 20. Qxc8# 1-0
+
