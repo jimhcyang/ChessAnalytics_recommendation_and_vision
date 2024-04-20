@@ -13,8 +13,8 @@ def create_square_mapping():
     return square_mapping
 
 
-def detect_and_extract_squares(image):
-    ret, corners, mask = detect_corners(image)
+def extract_squares(image):
+    ret, corners, mask, viz_corners = detect_corners(image)
     if ret:
         corners = cv2.cornerSubPix(mask, corners, (11, 11), (-1, -1),
                                    (cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_MAX_ITER, 30, 0.001)).round()
@@ -32,4 +32,4 @@ def detect_and_extract_squares(image):
                 x_start = x1 + col * dx
                 y_start = y1 + row * dy
                 squares.append((int(x_start), int(y_start), int(dx), int(dy)))
-        return squares
+        return squares, viz_corners

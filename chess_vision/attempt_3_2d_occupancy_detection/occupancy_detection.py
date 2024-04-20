@@ -7,7 +7,5 @@ if __name__ == "__main__":
         if filename.endswith('.jpeg'):
             path_image = os.path.join(directory, filename)
             detect_occupancy(path_image,
-                             output_dir="data/occupancy_detection/",
-                             threshold=15.0,
-                             output_dir_squares="data/occupancy_detection_squares/"
+                             threshold=15.0
                              )

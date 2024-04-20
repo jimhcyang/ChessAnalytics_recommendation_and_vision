@@ -13,4 +13,6 @@ def detect_corners(image):
     result = np.uint8(result)
     ret, corners = cv2.findChessboardCorners(
         result, (7, 7), flags=cv2.CALIB_CB_ADAPTIVE_THRESH + cv2.CALIB_CB_FAST_CHECK + cv2.CALIB_CB_NORMALIZE_IMAGE)
-    return ret, corners, mask
+    if ret:
+        viz_corners = cv2.drawChessboardCorners(result, (7, 7), corners, ret)
+    return ret, corners, mask, viz_corners

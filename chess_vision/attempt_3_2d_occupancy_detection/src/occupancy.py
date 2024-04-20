@@ -3,16 +3,17 @@ import cv2
 import numpy as np
 import pathlib
 from src.utils import filename_to_fen, fen_to_all_white_pawns
-from src.squares import detect_and_extract_squares, create_square_mapping
+from src.squares import extract_squares, create_square_mapping
 
 
-def detect_occupancy(path_image, output_dir, threshold, output_dir_squares=None):
+def detect_occupancy(path_image, threshold):
     name_image = pathlib.Path(path_image).name
     fen = filename_to_fen(name_image)
     fen_pawns = fen_to_all_white_pawns(fen)
-    occupancy_detection_filename = f"{output_dir}/{name_image}"
+    occupancy_detection_filename = f"data/occupancy_detection/{name_image}"
     image = cv2.imread(path_image)
-    squares = detect_and_extract_squares(image)
+    squares, viz_corners = extract_squares(image)
+    cv2.imwrite(f"data/corner_detection/{name_image}", viz_corners)
     mapping = create_square_mapping()
     occupancy_detection = image.copy()
     occupied = []
@@ -21,9 +22,8 @@ def detect_occupancy(path_image, output_dir, threshold, output_dir_squares=None)
         square_location = mapping[index]
         square = image[y:y+h, x:x+w]
         std_dev = np.std(square)
-        if output_dir_squares:
-            cv2.imwrite(
-                f"{output_dir_squares}/{name_image}_{square_location}_stddev_{round(std_dev, 2)}.jpeg", square)
+        cv2.imwrite(
+            f"data/square_extraction/{name_image}_{square_location}_stddev_{round(std_dev, 2)}.jpeg", square)
         if std_dev > threshold:
             occupied.append((x, y))
             occupied_fen.append(square_location)
