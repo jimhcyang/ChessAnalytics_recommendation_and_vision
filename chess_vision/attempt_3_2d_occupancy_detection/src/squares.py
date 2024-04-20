@@ -33,3 +33,5 @@ def extract_squares(image):
                 y_start = y1 + row * dy
                 squares.append((int(x_start), int(y_start), int(dx), int(dy)))
         return squares, viz_corners
+    else:
+        return None, None
