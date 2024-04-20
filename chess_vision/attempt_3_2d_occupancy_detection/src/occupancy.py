@@ -6,7 +6,7 @@ from src.utils import filename_to_fen, fen_to_all_white_pawns
 from src.squares import extract_squares, create_square_mapping
 
 
-def detect_occupancy(path_image, threshold):
+def detect_occupancy(path_image, threshold, save_squares=False):
     name_image = pathlib.Path(path_image).name
     fen = filename_to_fen(name_image)
     fen_pawns = fen_to_all_white_pawns(fen)
@@ -24,10 +24,9 @@ def detect_occupancy(path_image, threshold):
             square_location = mapping[index]
             square = image[y:y+h, x:x+w]
             std_dev = np.std(square)
-            if not np.isnan(std_dev):
-                pass
-                # cv2.imwrite(f"data/square_extraction/{name_image}_{
-                #             square_location}_stddev_{round(std_dev, 2)}.jpeg", square)
+            if not np.isnan(std_dev) and save_squares:
+                cv2.imwrite(f"data/square_extraction/{name_image}_{
+                            square_location}_stddev_{round(std_dev, 2)}.jpeg", square)
             if std_dev > threshold:
                 occupied.append((x, y))
                 occupied_fen.append(square_location)

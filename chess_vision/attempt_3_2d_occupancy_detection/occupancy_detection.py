@@ -7,10 +7,15 @@ logging.basicConfig(level=logging.INFO,
 
 if __name__ == "__main__":
     directory = "data/raw/"
-    for filename in os.listdir(directory):
+    for index, filename in enumerate(os.listdir(directory)):
+        if index == 0:
+            save_squares = True
+        else:
+            save_squares = False
         if filename.endswith('.jpeg'):
             path_image = os.path.join(directory, filename)
             logging.info(f"processing {filename}")
             detect_occupancy(path_image,
-                             threshold=15.0
+                             threshold=15.0,
+                             save_squares=save_squares
                              )
