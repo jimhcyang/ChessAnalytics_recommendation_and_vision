@@ -39,6 +39,7 @@ def save_board_image(board, filename):
 
 
 def simulate_game(path_data: pathlib.Path, game_id):
+    random.seed(42)
     board = chess.Board()
     move_count = 0
     game_log_filename = path_data.joinpath(
