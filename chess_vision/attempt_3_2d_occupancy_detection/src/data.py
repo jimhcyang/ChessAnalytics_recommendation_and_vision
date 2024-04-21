@@ -38,10 +38,11 @@ def save_board_image(board, filename):
     )
 
 
-def simulate_game(folder_path, log_path, game_id):
+def simulate_game(path_data: pathlib.Path, game_id):
     board = chess.Board()
     move_count = 0
-    game_log_filename = os.path.join(log_path, f"game_{game_id}.log")
+    game_log_filename = path_data.joinpath(
+        "logs").joinpath(f"game_{game_id}.log")
 
     with open(game_log_filename, "w") as log_file:
         try:
@@ -49,7 +50,8 @@ def simulate_game(folder_path, log_path, game_id):
                 move = random.choice(list(board.legal_moves))
                 board.push(move)
                 move_count += 1
-                save_board_image(board, fen_to_filename(board.fen()))
+                save_board_image(board, path_data.joinpath(
+                    "generated").joinpath(fen_to_filename(board.fen())))
                 log_file.write(f"{board.fen()}\n")
 
         except Exception as e:
@@ -82,8 +84,3 @@ def simulate_games(path_data, num_games):
 
     for result in results:
         logging.info(result)
-
-
-if __name__ == "__main__":
-    initialize_data_folders()
-    simulate_games("data/generated", "data/logs", 10)

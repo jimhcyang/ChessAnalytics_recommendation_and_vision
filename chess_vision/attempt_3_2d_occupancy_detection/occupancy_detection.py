@@ -18,7 +18,7 @@ if __name__ == "__main__":
             save_squares = True
         else:
             save_squares = False
-        if filename.endswith(".jpeg"):
+        if filename.endswith(".png"):
             path_image = path_data.joinpath(filename)
             results.append(
                 detect_occupancy(path_image, threshold=60.0,

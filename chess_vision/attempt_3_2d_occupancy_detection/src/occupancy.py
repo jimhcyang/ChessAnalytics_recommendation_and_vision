@@ -26,7 +26,7 @@ def detect_occupancy(path_image, threshold, save_squares=False):
             std_dev = np.std(square)
             if not np.isnan(std_dev) and save_squares:
                 cv2.imwrite(f"data/square_extraction/{name_image}_{
-                            square_location}_stddev_{round(std_dev, 2)}.jpeg", square)
+                            square_location}_stddev_{round(std_dev, 2)}.png", square)
             if std_dev > threshold:
                 occupied.append((x, y))
                 occupied_fen.append(square_location)

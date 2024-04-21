@@ -15,7 +15,7 @@ def filename_to_fen(filename):
 def fen_to_filename(fen):
     board_part = fen.split(" ")[0]
     filename_part = board_part.replace("/", "-")
-    filename = f"{filename_part}.jpeg"
+    filename = f"{filename_part}.png"
     return filename
 
 
