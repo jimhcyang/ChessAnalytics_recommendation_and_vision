@@ -106,4 +106,16 @@ Sample log output in data/logs/occupancy_detection.log
 2024-04-21 12:19:37 - root - INFO - Successful occupancy detection: 4133
 ```
 
+Sample game simulation log
 
+```
+rnbqkbnr/pppppppp/8/8/8/2N5/PPPPPPPP/R1BQKBNR b KQkq - 1 1
+r1bqkbnr/pppppppp/2n5/8/8/2N5/PPPPPPPP/R1BQKBNR w KQkq - 2 2
+r1bqkbnr/pppppppp/2n5/8/8/2N5/PPPPPPPP/1RBQKBNR b Kkq - 3 2
+r1bqkbnr/p1pppppp/1pn5/8/8/2N5/PPPPPPPP/1RBQKBNR w Kkq - 0 3
+r1bqkbnr/p1pppppp/1pn5/8/1P6/2N5/P1PPPPPP/1RBQKBNR b Kkq - 0 3
+r2qkbnr/pbpppppp/1pn5/8/1P6/2N5/P1PPPPPP/1RBQKBNR w Kkq - 1 4
+r2qkbnr/pbpppppp/1pn5/8/1P2P3/2N5/P1PP1PPP/1RBQKBNR b Kkq - 0 4
+1r1qkbnr/pbpppppp/1pn5/8/1P2P3/2N5/P1PP1PPP/1RBQKBNR w Kk - 1 5
+...
+```
