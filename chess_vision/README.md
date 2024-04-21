@@ -41,6 +41,30 @@ Installation from Attempt 1
 Attempt 3: 2D Occupancy Detection
 ---------------
 
+Project Overview
+
+```
+attempt_3_2d_occupancy_detection
+├── data						# generated image files
+│   ├── corner_detection		# corner detection output
+│   ├── generated				# simulated games
+│   ├── logs					# project logs including simulated games
+│   ├── occupancy_detection		# final occupancy detection
+│   └── square_extraction		# square extraction example (from 1 game image)
+├── notebooks
+│   └── wip.ipynb				# notebook used for masking/transformation experiments
+├── occupancy_detection.py		# main execution script
+├── requirements.txt			# dependencies
+└── src
+    ├── corners.py			# core corner detection
+    ├── data.py				# data initialization and game simualation / data generation
+    ├── evaluate.py			# evaluation of results
+    ├── occupancy.py		# core occupancy detection
+    ├── squares.py			# core square extraction
+    ├── utils.py				# misc utility functions
+    └── visualization.py	# visualization functions
+```
+
 Installation
 
 ```
@@ -57,22 +81,6 @@ Run Data Synthesis and Occupancy Detection
 
 ```
 python occupancy_detection.py
-```
-
-Results
-
-```
-/data					# generated image files
-	/generated			# simulated games
-	/corner_detection		# corner detection output
-	/square_extraction		# square extraction example (from 1 game image)
-	/occupancy_detection		# final occupancy detection
-
-/logs 							
-	/occupancy_detection.log	# main project log file
-	/game_0.log			# moves from simulated games
-	/game_1.log
-	/game_n.log
 ```
 
 Sample log output in data/logs/occupancy_detection.log
