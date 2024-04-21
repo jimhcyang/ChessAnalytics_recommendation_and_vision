@@ -14,24 +14,20 @@ def create_square_mapping():
 
 
 def extract_squares(image):
-    ret, corners, mask, viz_corners = detect_corners(image)
+    ret, corners, viz_corners = detect_corners(image)
     if ret:
-        corners = cv2.cornerSubPix(mask, corners, (11, 11), (-1, -1),
-                                   (cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_MAX_ITER, 30, 0.001)).round()
         squares = []
-        # Calculate average square dimensions
-        dx = round(np.mean(np.diff(corners[:, 0, 0].reshape(7, 7), axis=1)))
-        dy = round(np.mean(np.diff(corners[:, 0, 1].reshape(7, 7), axis=0)))
-        # Estimate the full board layout
+        square_size = int(image.shape[0]/8)
         x1, y1 = corners[0].ravel()
         # correction for square offsets
-        x1 = x1 - dx
-        y1 = y1 - dy
+        x1 = x1 - square_size
+        y1 = y1 - square_size
         for row in range(8):
             for col in range(8):
-                x_start = x1 + col * dx
-                y_start = y1 + row * dy
-                squares.append((int(x_start), int(y_start), int(dx), int(dy)))
+                x_start = x1 + col * square_size
+                y_start = y1 + row * square_size
+                squares.append((int(x_start), int(y_start),
+                               int(square_size), int(square_size)))
         return squares, viz_corners
     else:
         return None, None
