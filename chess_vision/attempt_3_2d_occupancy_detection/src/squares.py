@@ -17,7 +17,7 @@ def extract_squares(image):
     ret, corners, viz_corners = detect_corners(image)
     if ret:
         squares = []
-        square_size = int(image.shape[0]/8)
+        square_size = int(image.shape[0] / 8)
         x1, y1 = corners[0].ravel()
         # correction for square offsets
         x1 = x1 - square_size
@@ -26,8 +26,9 @@ def extract_squares(image):
             for col in range(8):
                 x_start = x1 + col * square_size
                 y_start = y1 + row * square_size
-                squares.append((int(x_start), int(y_start),
-                               int(square_size), int(square_size)))
+                squares.append(
+                    (int(x_start), int(y_start), int(square_size), int(square_size))
+                )
         return squares, viz_corners
     else:
         return None, None

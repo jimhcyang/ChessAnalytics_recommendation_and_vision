@@ -17,13 +17,13 @@ def generate_chess_images(num_images):
 
         # Generate the modified FEN filename
         # Get only the piece placement part of the FEN
-        fen = board.fen().split(' ')[0]
+        fen = board.fen().split(" ")[0]
         # Replace slashes with dashes for the filename
-        filename = fen.replace('/', '-') + '.jpeg'
+        filename = fen.replace("/", "-") + ".jpeg"
 
         # Convert the SVG to a JPEG image
         svg = chess.svg.board(board=board)
-        png = cairosvg.svg2png(bytestring=svg.encode('utf-8'))
+        png = cairosvg.svg2png(bytestring=svg.encode("utf-8"))
         image = Image.open(io.BytesIO(png))
 
         # Save the image with the modified FEN as the filename

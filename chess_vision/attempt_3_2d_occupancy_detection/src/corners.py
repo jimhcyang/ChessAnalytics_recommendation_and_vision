@@ -8,14 +8,18 @@ def detect_corners(image):
 
     # Detect chessboard corners
     ret, corners = cv2.findChessboardCorners(
-        gray_image, (7, 7), flags=cv2.CALIB_CB_ADAPTIVE_THRESH + cv2.CALIB_CB_FAST_CHECK + cv2.CALIB_CB_NORMALIZE_IMAGE)
+        gray_image,
+        (7, 7),
+        flags=cv2.CALIB_CB_ADAPTIVE_THRESH
+        + cv2.CALIB_CB_FAST_CHECK
+        + cv2.CALIB_CB_NORMALIZE_IMAGE,
+    )
 
     if ret:
-        square_size = int(image.shape[0]/8)
+        square_size = int(image.shape[0] / 8)
         corners = np.round(corners / square_size) * square_size
         # Draw corners on the original image
-        viz_corners = cv2.drawChessboardCorners(
-            image.copy(), (7, 7), corners, ret)
+        viz_corners = cv2.drawChessboardCorners(image.copy(), (7, 7), corners, ret)
     else:
         viz_corners = None
 
