@@ -4,7 +4,8 @@ from src.occupancy import detect_occupancy
 from src.data import initialize_data_folders, simulate_games
 from collections import Counter
 
-logging.basicConfig(level=logging.INFO, format="%(name)s - %(levelname)s - %(message)s")
+logging.basicConfig(level=logging.INFO,
+                    format="%(name)s - %(levelname)s - %(message)s")
 
 if __name__ == "__main__":
     initialize_data_folders()
@@ -20,7 +21,8 @@ if __name__ == "__main__":
         if filename.endswith(".jpeg"):
             path_image = os.path.join(path_simulated_data, filename)
             results.append(
-                detect_occupancy(path_image, threshold=60.0, save_squares=save_squares)
+                detect_occupancy(path_image, threshold=60.0,
+                                 save_squares=save_squares)
             )
     frequency_count = Counter(results)
     for value, count in frequency_count.items():
