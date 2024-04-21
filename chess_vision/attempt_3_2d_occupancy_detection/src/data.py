@@ -50,8 +50,8 @@ def simulate_game(path_data: pathlib.Path, game_id):
                 move = random.choice(list(board.legal_moves))
                 board.push(move)
                 move_count += 1
-                save_board_image(board, path_data.joinpath(
-                    "generated").joinpath(fen_to_filename(board.fen())))
+                save_board_image(board, str(path_data.joinpath(
+                    "generated").joinpath(fen_to_filename(board.fen()))))
                 log_file.write(f"{board.fen()}\n")
 
         except Exception as e:
@@ -62,7 +62,6 @@ def simulate_game(path_data: pathlib.Path, game_id):
 
 def simulate_games(path_data, num_games):
     path_simulated = path_data.joinpath("generated")
-    path_log = path_data.joinpath("logs")
     results = []
     num_cpus = os.cpu_count() or 1
     logging.info(
@@ -76,7 +75,7 @@ def simulate_games(path_data, num_games):
     )
     with ThreadPoolExecutor(max_workers=num_cpus) as executor:
         futures = [
-            executor.submit(simulate_game, path_simulated, path_log, i)
+            executor.submit(simulate_game, path_data, i)
             for i in range(num_games)
         ]
         for future in as_completed(futures):
