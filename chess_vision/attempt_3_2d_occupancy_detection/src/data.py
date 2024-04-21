@@ -3,16 +3,19 @@ import chess
 import chess.svg
 import logging
 import os
+import pathlib
 import random
 import shutil
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from src.utils import fen_to_filename
 
-logging.basicConfig(level=logging.INFO, format="%(name)s - %(levelname)s - %(message)s")
+logging.basicConfig(level=logging.INFO,
+                    format="%(name)s - %(levelname)s - %(message)s")
 
 
-def initialize_data_folders():
-    main_dir = "data"
+def initialize_data_folders(path_data: pathlib.Path):
+    if not os.path.exists(path_data):
+        os.makedirs(path_data)
     subdirectories = [
         "corner_detection",
         "generated",
@@ -21,7 +24,7 @@ def initialize_data_folders():
         "logs",
     ]
     for subdir in subdirectories:
-        dir_path = os.path.join(main_dir, subdir)
+        dir_path = path_data.joinpath(subdir)
         if os.path.exists(dir_path):
             shutil.rmtree(dir_path)
         os.makedirs(dir_path)
@@ -55,7 +58,9 @@ def simulate_game(folder_path, log_path, game_id):
     return f"Game {game_id} over after {move_count} moves."
 
 
-def simulate_games(folder_path, log_path, num_games):
+def simulate_games(path_data, num_games):
+    path_simulated = path_data.joinpath("generated")
+    path_log = path_data.joinpath("logs")
     results = []
     num_cpus = os.cpu_count() or 1
     logging.info(
@@ -63,13 +68,13 @@ def simulate_games(folder_path, log_path, num_games):
             =========== Playing simulated games ===========
             {num_cpus} CPUs available, simulating {num_games} games
             playing {min(num_cpus, num_games)} in parallel
-            saving images to {folder_path}
+            saving images to {path_simulated}
 
         """
     )
     with ThreadPoolExecutor(max_workers=num_cpus) as executor:
         futures = [
-            executor.submit(simulate_game, folder_path, log_path, i)
+            executor.submit(simulate_game, path_simulated, path_log, i)
             for i in range(num_games)
         ]
         for future in as_completed(futures):
