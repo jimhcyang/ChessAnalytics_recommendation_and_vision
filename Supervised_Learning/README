@@ -17,3 +17,8 @@ ResNet shows good stability with increased model depth while PlainNet does not. 
 3. GamePlay: this notebook is a arena that different models play against each other
 
 4. Plots: supplementary notebook that generates model performance metrics plots
+
+
+The AlphaZero implementation unfortunately was not a success due to the computational cost of generating self-play games as training data using the MCTS algorithm. Our work refers to the GitHub repository: https://github.com/geochri/AlphaZero_Chess
+
+We trained the AlphaZero network on three iterations, and on 300 self-play games each. The self-play games are saved to the folder AlphaZero_MCTS_selfplays.
