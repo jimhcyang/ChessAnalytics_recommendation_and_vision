@@ -63,10 +63,10 @@ Results
 
 ```
 /data					# generated image files
-/generated				# simulated games
-/corner_detection		# corner detection output
-/square_extraction		# square extraction example (from 1 game image)
-/occupancy_detection	# final occupancy detection
+	/generated				# simulated games
+	/corner_detection		# corner detection output
+	/square_extraction		# square extraction example (from 1 game image)
+	/occupancy_detection	# final occupancy detection
 
 /logs 							
 	/occupancy_detection.log	# main project log file
