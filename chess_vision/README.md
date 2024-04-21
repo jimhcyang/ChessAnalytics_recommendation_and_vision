@@ -45,24 +45,24 @@ Project Overview
 
 ```
 attempt_3_2d_occupancy_detection
-├── data						# generated image files
+├── data				# generated image files
 │   ├── corner_detection		# corner detection output
-│   ├── generated				# simulated games
-│   ├── logs					# project logs including simulated games
+│   ├── generated			# simulated games
+│   ├── logs				# project logs including simulated games
 │   ├── occupancy_detection		# final occupancy detection
 │   └── square_extraction		# square extraction example (from 1 game image)
 ├── notebooks
-│   └── wip.ipynb				# notebook used for masking/transformation experiments
+│   └── wip.ipynb			# notebook used for masking/transformation experiments
 ├── occupancy_detection.py		# main execution script
 ├── requirements.txt			# dependencies
 └── src
     ├── corners.py			# core corner detection
     ├── data.py				# data initialization and game simualation / data generation
     ├── evaluate.py			# evaluation of results
-    ├── occupancy.py		# core occupancy detection
+    ├── occupancy.py			# core occupancy detection
     ├── squares.py			# core square extraction
-    ├── utils.py				# misc utility functions
-    └── visualization.py	# visualization functions
+    ├── utils.py			# misc utility functions
+    └── visualization.py		# visualization functions
 ```
 
 Installation
