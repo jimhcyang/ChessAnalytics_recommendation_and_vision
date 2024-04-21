@@ -1,6 +1,4 @@
 import chess
-import cv2
-import numpy as np
 from src.corners import detect_corners
 
 
@@ -27,7 +25,8 @@ def extract_squares(image):
                 x_start = x1 + col * square_size
                 y_start = y1 + row * square_size
                 squares.append(
-                    (int(x_start), int(y_start), int(square_size), int(square_size))
+                    (int(x_start), int(y_start), int(
+                        square_size), int(square_size))
                 )
         return squares, viz_corners
     else:

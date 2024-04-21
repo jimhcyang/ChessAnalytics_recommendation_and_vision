@@ -1,4 +1,7 @@
 import chess
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 def filename_to_fen(filename):

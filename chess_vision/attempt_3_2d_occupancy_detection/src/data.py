@@ -9,8 +9,7 @@ import shutil
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from src.utils import fen_to_filename
 
-logging.basicConfig(level=logging.INFO,
-                    format="%(name)s - %(levelname)s - %(message)s")
+logger = logging.getLogger(__name__)
 
 
 def initialize_data_folders(path_data: pathlib.Path):
@@ -20,8 +19,7 @@ def initialize_data_folders(path_data: pathlib.Path):
         "corner_detection",
         "generated",
         "occupancy_detection",
-        "square_extraction",
-        "logs",
+        "square_extraction"
     ]
     for subdir in subdirectories:
         dir_path = path_data.joinpath(subdir)
@@ -65,15 +63,10 @@ def simulate_games(path_data, num_games):
     path_simulated = path_data.joinpath("generated")
     results = []
     num_cpus = os.cpu_count() or 1
-    logging.info(
-        f"""
-            =========== Playing simulated games ===========
-            {num_cpus} CPUs available, simulating {num_games} games
-            playing {min(num_cpus, num_games)} in parallel
-            saving images to {path_simulated}
-
-        """
-    )
+    logging.info("=========== Playing simulated games ===========")
+    logging.info(f"{num_cpus} CPUs available, simulating {num_games} games")
+    logging.info(f"playing {min(num_cpus, num_games)} in parallel")
+    logging.info(f"saving images to {path_simulated}")
     with ThreadPoolExecutor(max_workers=num_cpus) as executor:
         futures = [
             executor.submit(simulate_game, path_data, i)

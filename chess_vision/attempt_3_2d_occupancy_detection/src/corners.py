@@ -1,5 +1,8 @@
 import cv2
 import numpy as np
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 def detect_corners(image):
@@ -19,7 +22,8 @@ def detect_corners(image):
         square_size = int(image.shape[0] / 8)
         corners = np.round(corners / square_size) * square_size
         # Draw corners on the original image
-        viz_corners = cv2.drawChessboardCorners(image.copy(), (7, 7), corners, ret)
+        viz_corners = cv2.drawChessboardCorners(
+            image.copy(), (7, 7), corners, ret)
     else:
         viz_corners = None
 
