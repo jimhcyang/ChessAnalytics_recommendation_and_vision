@@ -11,7 +11,7 @@ def detect_occupancy(path_image, threshold, save_squares=False):
     fen = filename_to_fen(name_image)
     fen_pawns = fen_to_all_white_pawns(fen)
     occupancy_detection_filename = f"data/occupancy_detection/{name_image}"
-    image = cv2.imread(path_image)
+    image = cv2.imread(str(path_image))
     squares, viz_corners = extract_squares(image)
     if viz_corners is not None:
         cv2.imwrite(f"data/corner_detection/{name_image}", viz_corners)
