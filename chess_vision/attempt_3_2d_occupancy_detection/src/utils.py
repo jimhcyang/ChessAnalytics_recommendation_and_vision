@@ -1,10 +1,8 @@
 import chess
 
-# rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPB/RNBQQBBR w kq - 0 1
-
 
 def filename_to_fen(filename):
-    board_part = filename.split('.')[0].replace('-', '/')
+    board_part = filename.split(".")[0].replace("-", "/")
     full_fen = f"{board_part} w KQkq - 0 1"
     try:
         board = chess.Board(full_fen)
@@ -15,9 +13,9 @@ def filename_to_fen(filename):
 
 
 def fen_to_filename(fen):
-    board_part = fen.split(' ')[0]
-    filename_part = board_part.replace('/', '-')
-    filename = f"{filename_part}.jpeg"
+    board_part = fen.split(" ")[0]
+    filename_part = board_part.replace("/", "-")
+    filename = f"{filename_part}.png"
     return filename
 
 
